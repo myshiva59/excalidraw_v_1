@@ -31,7 +31,6 @@ export const Modal = (props: {
       onKeyDown={handleKeydown}
       aria-labelledby={props.labelledBy}
     >
-      {console.log("Hello")}
       <div className="Modal__background" onClick={props.onCloseRequest}></div>
       <div
         className="Modal__content"

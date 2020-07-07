@@ -338,15 +338,12 @@ export const exportCanvas = async (
     const fileName = `${name}.png`;
     tempCanvas.toBlob(async (blob: any) => {
       if (blob) {
-        // await fileSave(blob, {
-        //   fileName: fileName,
-        // });
-        const data = await blob.arrayBuffer();
-        console.log(data);
-        const res = await axios.post("http://localhost:9099/upload", {
-          name: "shiva",
-          data: "youi",
-          data2: JSON.stringify(data),
+        const fileData = new FormData();
+        fileData.append("image", blob);
+        const res = await axios.post("http://localhost:9099/upload", fileData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         });
         console.log(res);
       }

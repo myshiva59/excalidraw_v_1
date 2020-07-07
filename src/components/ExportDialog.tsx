@@ -15,7 +15,7 @@ import { probablySupportsClipboardBlob } from "../clipboard";
 import { getSelectedElements, isSomeElementSelected } from "../scene";
 import useIsMobile from "../is-mobile";
 import { Dialog } from "./Dialog";
-import saveFile from "./utilities";
+// import saveFile from "./utilities";
 
 const scales = [1, 2, 3];
 const defaultScale = scales.includes(devicePixelRatio) ? devicePixelRatio : 1;
@@ -56,7 +56,7 @@ const ExportModal = ({
     shouldAddWatermark,
   } = appState;
 
-  const saveToPng = () => {
+  const exportToPng = () => {
     onExportToPng(exportedElements, scale);
     console.log("called");
   };
@@ -76,7 +76,12 @@ const ExportModal = ({
     return () => {
       clearTimeout(tId);
     };
-  });
+  }, [triggerSaveButton]);
+
+  function saveAsPng() {
+    console.log("saveAsPng");
+    triggerSaveButton.current?.click();
+  }
 
   useEffect(() => {
     const previewNode = previewRef.current;
@@ -111,7 +116,7 @@ const ExportModal = ({
               label="PNG"
               title={t("buttons.exportToPng")}
               aria-label={t("buttons.exportToPng")}
-              onClick={() => saveFile(saveToPng)}
+              onClick={() => exportToPng()}
               ref={triggerSaveButton}
             />
             <ToolButton

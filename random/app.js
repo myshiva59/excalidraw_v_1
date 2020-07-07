@@ -5,7 +5,7 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-let bodyParser = require("body-parser");
+// let bodyParser = require("body-parser");
 // const busboy = require("connect-busboy");
 
 var indexRouter = require("./routes/index");
@@ -27,12 +27,12 @@ app.all("*", (req, res, next) => {
 });
 app.use(logger("dev"));
 app.use(express.static(__dirname));
-app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  }),
-);
-app.use(bodyParser.json());
+// app.use(
+//   bodyParser.urlencoded({
+//     extended: true,
+//   }),
+// );
+// app.use(bodyParser.json());
 // app.use(busboy({ immediate: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
@@ -45,21 +45,10 @@ console.log(
 );
 
 app.post("/upload", (req, res) => {
-  console.log(req.body.data2);
-  //   req.busboy.on("file", function (
-  //     fieldname,
-  //     file,
-  //     filename,
-  //     encoding,
-  //     mimetype,
-  //   ) {
-  //     console.log(fieldname, file, filename, encoding, mimetype);
-  //   });
-  //   let name = req.body.name;
-  //   let data = await req.body.data;
+  req.on("readable", async function () {
+    let bloData = await req.read();
+  });
   console.log("Data received in body- ");
-  //   console.log(data);
-  //   fs.createWriteStream(`${__dirname}/${name}`).write(data);
   res.send("Nothing");
 });
 
