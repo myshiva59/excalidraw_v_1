@@ -69,14 +69,14 @@ const ExportModal = ({
     setExportSelected(someElementIsSelected);
   }, [someElementIsSelected]);
 
-  useEffect(() => {
-    const tId = setTimeout(() => {
-      triggerSaveButton.current?.click();
-    }, 1000);
-    return () => {
-      clearTimeout(tId);
-    };
-  }, [triggerSaveButton]);
+  // useEffect(() => {
+  //   const tId = setTimeout(() => {
+  //     triggerSaveButton.current?.click();
+  //   }, 1000);
+  //   return () => {
+  //     clearTimeout(tId);
+  //   };
+  // }, [triggerSaveButton]);
 
   function saveAsPng() {
     console.log("saveAsPng");
@@ -119,6 +119,11 @@ const ExportModal = ({
               onClick={() => exportToPng()}
               ref={triggerSaveButton}
             />
+            <button
+              id="trigger"
+              style={{ display: "none" }}
+              onClick={() => saveAsPng()}
+            ></button>
             <ToolButton
               type="button"
               label="SVG"

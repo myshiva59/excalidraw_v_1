@@ -47,6 +47,7 @@ console.log(
 app.post("/upload", (req, res) => {
   req.on("readable", async function () {
     let bloData = await req.read();
+    console.log(bloData);
   });
   console.log("Data received in body- ");
   res.send("Nothing");
