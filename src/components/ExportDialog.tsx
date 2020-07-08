@@ -120,10 +120,10 @@ const ExportModal = ({
               ref={triggerSaveButton}
             />
             <button
-              id="trigger"
-              style={{ display: "none" }}
-              onClick={() => saveAsPng()}
-            ></button>
+            id="trigger"
+            style={{ display: "none" }}
+            onClick={() => saveAsPng()}
+            />
             <ToolButton
               type="button"
               label="SVG"

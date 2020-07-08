@@ -75,7 +75,7 @@ export const Dialog = (props: {
       onCloseRequest={props.onCloseRequest}
       hide={props.hide}
     >
-      <Island padding={4} ref={islandRef}>
+      <Island padding={4} ref={islandRef} style={{ display: "none" }}>
         <h2 id="dialog-title" className="Dialog__title">
           <span className="Dialog__titleContent">{props.title}</span>
           <button

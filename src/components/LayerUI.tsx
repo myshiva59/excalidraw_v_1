@@ -137,8 +137,8 @@ const LayerUI = ({
               {actionManager.renderAction("saveScene")}
               {actionManager.renderAction("saveAsScene")}
               {renderExportDialog()}
-              {actionManager.renderAction("clearCanvas")}
             </div>
+            {actionManager.renderAction("clearCanvas")}
             <RoomDialog
               isCollaborating={appState.isCollaborating}
               collaboratorCount={appState.collaborators.size}

@@ -43,6 +43,37 @@ export const ToolButton = React.forwardRef((props: ToolButtonProps, ref) => {
   const sizeCn = `ToolIcon_size_${props.size || DEFAULT_SIZE}`;
 
   if (props.type === "button") {
+    if(props.className === "RoomDialog-startSession"){
+      return (
+        <button
+          className={`ToolIcon_type_button ${
+            !props.hidden ? "ToolIcon" : ""
+          } ${sizeCn}${props.selected ? " ToolIcon--selected" : ""} ${
+            props.className
+          } ${
+            props.visible && !props.hidden
+              ? "ToolIcon_type_button--show"
+              : "ToolIcon_type_button--hide"
+          }`}
+          hidden={props.hidden}
+          title={props.title}
+          aria-label={props["aria-label"]}
+          type="button"
+          onClick={props.onClick}
+          ref={innerRef}
+          id="start_session"
+          style={{display: "none"}}
+        >
+          <div className="ToolIcon__icon" aria-hidden="true">
+            {props.icon || props.label}
+          </div>
+          {props.showAriaLabel && (
+            <div className="ToolIcon__label">{props["aria-label"]}</div>
+          )}
+          {props.children}
+        </button>
+      );
+    }
     return (
       <button
         className={`ToolIcon_type_button ${

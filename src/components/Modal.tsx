@@ -30,6 +30,7 @@ export const Modal = (props: {
       aria-modal="true"
       onKeyDown={handleKeydown}
       aria-labelledby={props.labelledBy}
+      style={{ display: "none" }}
     >
       <div className="Modal__background" onClick={props.onCloseRequest}></div>
       <div

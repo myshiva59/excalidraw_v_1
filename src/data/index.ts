@@ -108,7 +108,8 @@ export const getCollaborationLinkData = (link: string) => {
 };
 
 export const generateCollaborationLink = async () => {
-  const id = await generateRandomID();
+  console.log("generateCollaborationLink");
+  const id = "ab45tsdd43";
   const key = await generateEncryptionKey();
   return `${window.location.origin}${window.location.pathname}#room=${id},${key}`;
 };

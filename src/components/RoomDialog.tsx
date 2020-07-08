@@ -135,8 +135,12 @@ export const RoomDialog = ({
 
   const triggerButton = useRef<HTMLButtonElement>(null);
 
+  function showDialogBox() {
+    triggerButton.current?.click();
+  }
   const handleClose = React.useCallback(() => {
     setModalIsShown(false);
+    console.log("handleClose");
     triggerButton.current?.focus();
   }, []);
 
@@ -145,7 +149,12 @@ export const RoomDialog = ({
   }, [isCollaborating]);
 
   return (
-    <>
+    <div style={{ display: "none" }}>
+      <button
+        id="showDialogBox"
+        style={{ display: "none" }}
+        onClick={() => showDialogBox()}
+      />
       <ToolButton
         className={`RoomDialog-modalButton ${
           isCollaborating ? "is-collaborating" : ""
@@ -164,7 +173,9 @@ export const RoomDialog = ({
           </div>
         )}
       </ToolButton>
+      <div style={{ display: "none" }}>
       {modalIsShown && (
+
         <Dialog
           maxWidth={800}
           onCloseRequest={handleClose}
@@ -181,6 +192,7 @@ export const RoomDialog = ({
           />
         </Dialog>
       )}
-    </>
+      </div>
+    </div>
   );
 };
