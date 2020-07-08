@@ -338,14 +338,13 @@ export const exportCanvas = async (
     const fileName = `${name}.png`;
     tempCanvas.toBlob(async (blob: any) => {
       if (blob) {
-        const fileData = new FormData();
-        fileData.append("image", blob);
-        const res = await axios.post("http://localhost:9099/upload", fileData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
-        console.log(res);
+        const imageRandomId = `${Math.floor(Math.random() * 10000)}`;
+        let f = new File([blob], `test_excalidraw_${imageRandomId}.png`);
+        let formData = new FormData();
+        formData.append('file', f);
+        formData.append('hash', '');
+        const res = await axios.post("http://localhost:8000/savefilepublic", formData);
+        console.log(res.data);
       }
     });
   } else if (type === "clipboard") {
